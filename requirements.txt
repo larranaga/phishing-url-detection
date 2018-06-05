@@ -1,0 +1,9 @@
+numpy
+protobuf
+scipy
+tensorflow
+keras
+six
+wheel
+pandas
+sklearn
