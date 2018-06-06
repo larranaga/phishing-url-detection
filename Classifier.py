@@ -9,7 +9,7 @@ import warnings
 from LSTMC import LSTMC
 
 warnings.filterwarnings("ignore")
-
+_DATA= 'data/'
 
 def run_model(model, url_int_tokens, target, max_len, epochs, batch_size, model_from_file, name):
     X_train, X_test, target_train, target_test = model_selection.train_test_split(X, target, test_size=0.25,
@@ -17,13 +17,14 @@ def run_model(model, url_int_tokens, target, max_len, epochs, batch_size, model_
     print("Running model " + name)
     if model_from_file is None:
         model.train_model(X_train, target_train, epochs=epochs, batch_size=batch_size)
-        model.save_model(name + ".json", name + ".h5")
+        model.save_model(_DATA + name + ".json", _DATA + name + ".h5")
     else:
-        model.load_model(name + ".json", name + ".h5")
+        model.load_model(_DATA + name + ".json", _DATA + name + ".h5")
     loss, accuracy = lstm_model.test_model(X_test, target_test)
     print("loss " + str(loss))
     print("accuracy " + str(accuracy))
     model.export_plot()
+
 
 if __name__ == '__main__':
     df = pd.read_csv('classification_dataset.csv')
