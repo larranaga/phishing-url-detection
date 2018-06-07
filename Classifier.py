@@ -20,9 +20,9 @@ def run_model(model, url_int_tokens, target, max_len, epochs, batch_size, model_
         model.save_model(_DATA + name + ".json", _DATA + name + ".h5")
     else:
         model.load_model(_DATA + name + ".json", _DATA + name + ".h5")
-    loss, accuracy = lstm_model.test_model(X_test, target_test)
-    print("loss " + str(loss))
-    print("accuracy " + str(accuracy))
+    # loss, accuracy = lstm_model.test_model(X_test, target_test)
+    # print("loss " + str(loss))
+    # print("accuracy " + str(accuracy))
     model.export_plot()
 
 
@@ -37,8 +37,13 @@ if __name__ == '__main__':
 
     lstm_model = LSTMC()
     cnn_model = CNNC()
-    run_model(cnn_model, url_int_tokens, target, max_len, epochs, batch_size, None, "cnn_model")
-    run_model(lstm_model, url_int_tokens, target, max_len, epochs, batch_size, None, "lstm_model")
+    run_model(cnn_model, url_int_tokens, target, max_len, epochs, batch_size, "lstm_model", "cnn_model")
+    run_model(lstm_model, url_int_tokens, target, max_len, epochs, batch_size, "lstm_cnn", "lstm_model")
+    # print(lstm_model.predict("https://services.runescape.com-of.top/m=weblogin/a=13/loginform.ws"))
+    # print(cnn_model.predict("https://services.runescape.com-of.top/m=weblogin/a=13/loginform.ws"))
+    print(lstm_model.predict("https://www.rojadirecta.net/watchnbafinalsstreamfree"))
+    print(cnn_model.predict("https://www.rojadirecta.net/watchnbafinalsstreamfree"))
+
 
 
 

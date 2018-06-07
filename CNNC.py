@@ -85,7 +85,7 @@ class CNNC:
         url_int_tokens = [[printable.index(x) + 1 for x in x_input if x in printable]]
         X = sequence.pad_sequences(url_int_tokens, maxlen=self.max_len)
         p = self.model.predict(X, batch_size=1)
-        return "malicious" if p < 0.5 else "good"
+        return "benign" if p < 0.5 else "malicious"
 
     def export_plot(self):
         plot_model(self.model, to_file='CNN.png')
